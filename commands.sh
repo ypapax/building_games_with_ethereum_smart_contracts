@@ -1,32 +1,40 @@
 #!/usr/bin/env bash
 set -ex
 
-
-gethSync(){
+gethSync() {
   geth --syncmode fast --cache=1024
 }
 
-testNetSync(){
+testNetSync() {
   geth --rinkeby --port 31303
 }
 
-newWallet(){
+newWallet() {
   geth account new
 }
 
-newWalletTestNet(){
+newWalletTestNet() {
   geth --rinkeby account new
 }
 
 # getting ether for rinkeby network: https://faucet.rinkeby.io/
-balance(){
-  geth --rinkeby attach << EOF
+# my transaction link https://rinkeby.etherscan.io/address/0x6822f9cc53512bcd267ea577337dbbe45e7e41b7
+balance() {
+  geth --rinkeby attach <<EOF
 eth.getBalance(eth.accounts[2])
 EOF
 }
 
-accounts(){
-  geth --rinkeby attach << EOF
+balances() {
+  geth --rinkeby attach <<EOF
+  eth.accounts.forEach(function(ac){
+    console.info("balance ", ac, " :", eth.getBalance(ac));
+  });
+EOF
+}
+
+accounts() {
+  geth --rinkeby attach <<EOF
 eth.accounts
 EOF
 }
