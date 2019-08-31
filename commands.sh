@@ -72,9 +72,11 @@ EOF
 truffleeInit(){
   truffle init
 }
+develop(){
+  truffle develop
+}
 
 truffleMigrate(){
-  truffle develop &
   truffle migrate -f 2
 }
 

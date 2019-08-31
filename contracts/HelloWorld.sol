@@ -1,14 +1,14 @@
-pragma solidity ^0.4.15;
+pragma solidity ^0.5.8;
 
 contract HelloWorld {
-    address owner;
+    address payable owner;
     string greeting = "Hello World";
     // Constructor function
-    function HelloWorld() public {
+    constructor() public {
         owner = msg.sender;
     }
 
-    function greet() constant public returns (string) {
+    function greet() view public returns (string memory x) {
         return greeting;
     }
 
