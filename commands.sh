@@ -35,19 +35,19 @@ EOF
 }
 
 accounts() {
-  geth --rinkeby  attach <<EOF
+  geth --rinkeby attach <<EOF
 eth.accounts
 EOF
 }
 
-installSpecificSolcjs(){
+installSpecificSolcjs() {
   npm i solc@0.4.15 -g
 }
 
 account=2
 password="$RINKBEBY_ACCOUNT5_PASSWORD"
 
-buildContractManually(){
+buildContractManually() {
   pushd contracts
   solcjs --bin --abi -o bin HelloWorld.sol
   bytecode=$(cat bin/HelloWorld_sol_HelloWorld.bin)
@@ -69,15 +69,19 @@ EOF
   popd
 }
 
-truffleeInit(){
+truffleeInit() {
   truffle init
 }
-develop(){
+develop() {
   truffle develop
 }
 
-truffleMigrate(){
+truffleMigrate() {
   truffle migrate -f 2
+}
+
+truffleDeployRinkeby() {
+  truffle migrate --network rinkeby
 }
 
 "$@"
