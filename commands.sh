@@ -6,7 +6,7 @@ gethSync() {
 }
 
 testNetSync() {
-  geth --rinkeby --port 31303 --rpc
+  geth --rinkeby --port 31303 --rpc --rpcapi personal,web3,eth,net
 }
 
 newWallet() {
@@ -82,6 +82,10 @@ truffleMigrate() {
 
 truffleDeployRinkeby() {
   truffle migrate --network rinkeby
+}
+
+truffleHelloWorld() {
+  truffle exec ./4_hello_world.js
 }
 
 "$@"
