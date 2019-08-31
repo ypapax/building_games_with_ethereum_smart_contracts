@@ -6,7 +6,7 @@ gethSync() {
 }
 
 testNetSync() {
-  geth --rinkeby --port 31303
+  geth --rinkeby --port 31303 --rpc
 }
 
 newWallet() {
@@ -67,6 +67,15 @@ buildContractManually(){
   HelloWorld.greet();
 EOF
   popd
+}
+
+truffleeInit(){
+  truffle init
+}
+
+truffleMigrate(){
+  truffle develop &
+  truffle migrate -f 2
 }
 
 "$@"
